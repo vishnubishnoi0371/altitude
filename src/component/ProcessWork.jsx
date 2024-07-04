@@ -75,7 +75,7 @@ const ProcessWork = () => {
                         {[...Array(6)].map((_, index) => (
                             <div key={index} className={`relative animate-shadowMove delay-${index * 300}`}>
                                 <p ref={el => circlesRef.current[index] = el} className='text-white relative text-xl md:text-2xl z-20 font-semibold leading-125 text-center flex items-center justify-center bg-secondary-blue mb-0 rounded-full w-[42px] h-[42px] md:w-[54px] md:h-[54px]'>{index + 1}</p>
-                                <span ref={el => linesRef.current[index] = el} className={`absolute hidden xxs:block rotate-90 md:rotate-0 top-0 ${index % 2 === 0 ? 'md:top-[-100%]' : 'md:top-[100%]'} max-md:${index % 2 === 0 ? '-rotate-90' : 'rotate-90'} left-[120%] md:left-[44%] animate-lineMove ${index === 0 || index === 2 || index === 4 ? 'sm:-rotate-90 sm:!left-[-25%] md:lwft-[44%]' : ''}`}>
+                                <span ref={el => linesRef.current[index] = el} className={`absolute hidden xxs:block rotate-90 md:rotate-0 top-0 ${index % 2 === 0 ? 'md:top-[-100%]' : 'md:top-[100%]'} max-md:${index % 2 === 0 ? '-rotate-90' : 'rotate-90'} left-[120%] md:left-[44%] animate-lineMove ${index === 0 || index === 2 || index === 4 ? 'sm:-rotate-90 sm:!left-[-25%] md:!left-[44%]' : ''}`}>
                                     <BlurLine />
                                 </span>
                             </div>
