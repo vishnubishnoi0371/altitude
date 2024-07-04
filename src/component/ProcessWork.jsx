@@ -56,7 +56,7 @@ const ProcessWork = () => {
     }, []);
 
     return (
-        <div className='bg-dark-blue py-10 sm:py-14 md:py-20 lg:py-[130px]'>
+        <div className='bg-dark-blue py-10 sm:py-14 md:py-20 overflow-hidden lg:py-[130px]'>
             <h2 className='text-white font-bold text-center !leading-116 text-2xl md:text-4xl lg:text-5xl mb-8 md:mb-14 lg:mb-[64px] animate-fadeIn'>Our Work Process</h2>
             <div className='max-w-[1194px] mx-auto px-3'>
                 <div className='flex flex-col sm:flex-row relative justify-between md:flex-col gap-6 md:!gap-[60px]'>
@@ -71,16 +71,16 @@ const ProcessWork = () => {
                             />
                         ))}
                     </div>
-                    <div className='flex flex-col absolute max-md:top-[2%] left-1 sm:left-[47%] md:left-6 !gap-[170px] sm:!gap-[65px]  md:flex-row md:relative items-center max-md:justify-between md:gap-[70px] lg:!gap-[120px]'>
+                    <div className='flex flex-col absolute max-md:top-[2%] left-1 sm:left-[47%] md:left-6 gap-32 sm:gap-[44px] md:gap-[80px] lg:gap-[120px] md:flex-row md:relative items-center max-md:justify-between'>
                         {[...Array(6)].map((_, index) => (
                             <div key={index} className={`relative animate-shadowMove delay-${index * 300}`}>
                                 <p ref={el => circlesRef.current[index] = el} className='text-white relative text-xl md:text-2xl z-20 font-semibold leading-125 text-center flex items-center justify-center bg-secondary-blue mb-0 rounded-full w-[42px] h-[42px] md:w-[54px] md:h-[54px]'>{index + 1}</p>
-                                <span ref={el => linesRef.current[index] = el} className={`absolute hidden xxs:block rotate-90 md:rotate-0 top-0 ${index % 2 === 0 ? 'md:top-[-100%]' : 'md:top-[100%]'} max-md:${index % 2 === 0 ? '-rotate-90' : 'rotate-90'} left-[120%] md:left-[44%] animate-lineMove ${index === 0 || index === 2 || index === 4 ? 'sm:-rotate-90' : ''}`}>
+                                <span ref={el => linesRef.current[index] = el} className={`absolute hidden xxs:block rotate-90 md:rotate-0 top-0 ${index % 2 === 0 ? 'md:top-[-100%]' : 'md:top-[100%]'} max-md:${index % 2 === 0 ? '-rotate-90' : 'rotate-90'} left-[120%] md:left-[44%] animate-lineMove ${index === 0 || index === 2 || index === 4 ? 'sm:-rotate-90 sm:!left-[-25%] md:lwft-[44%]' : ''}`}>
                                     <BlurLine />
                                 </span>
                             </div>
                         ))}
-                        <hr className='absolute top-[2%] border-t-0 md:[2px] md:top-7 w-[2px] left-[21px] sm:left-[20px] md:left-[25px] md:w-full !bg-[#313543] max-sm:min-h-[905px] max-md:min-h-[530px] max-sm:h-[97%] md:max-w-[880px] lg:w-full' />
+                        <hr className='absolute top-[2%] border-t-0 md:[2px] h-[2px] md:top-7 w-[2px] left-[21px] sm:left-[20px] md:left-[25px] md:w-full !bg-[#313543] max-sm:min-h-[870px] max-md:min-h-[461px] max-sm:h-[97%] md:max-w-[700px] lg:max-w-[895px] xl:max-w-[880px] lg:w-full' />
                     </div>
                     <div className="flex flex-col md:flex-row gap-6 lg:gap-12 items-end md:items-center justify-end">
                         {steps.slice(3).map((step, index) => (

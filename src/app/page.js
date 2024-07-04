@@ -1,5 +1,4 @@
-import ProcessWork from "@/component/processWork";
-import Image from "next/image";
+import ProcessWork from "../component/ProcessWork";
 
 export default function Home() {
   return (
