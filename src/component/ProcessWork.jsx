@@ -17,41 +17,40 @@ const ProcessWork = () => {
     const cardsRef = useRef([]);
     const circlesRef = useRef([]);
     const linesRef = useRef([]);
+    const hrRef = useRef(null);
 
     useEffect(() => {
         gsap.set(cardsRef.current, { opacity: 0, y: 50 });
         gsap.set(circlesRef.current, { boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)' });
         gsap.set(linesRef.current, { opacity: 0 });
+        gsap.set(hrRef.current, { scaleX: 0, transformOrigin: 'left center' });
 
-        gsap.to(cardsRef.current, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.3,
-            duration: 1,
-            repeat: -1,
-            repeatDelay: 2,
-            yoyo: true,
-            ease: 'power1.inOut',
-        });
+        const timeline = gsap.timeline({ repeat: -1, repeatDelay: 2 });
 
-        gsap.to(circlesRef.current, {
-            boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
-            stagger: 0.3,
-            duration: 1,
-            repeat: -1,
-            repeatDelay: 2,
-            yoyo: true,
-            ease: 'power1.inOut',
-        });
-
-        gsap.to(linesRef.current, {
-            opacity: 1,
-            stagger: 0.3,
-            duration: 1,
-            repeat: -1,
-            repeatDelay: 2,
-            yoyo: true,
-            ease: 'power1.inOut',
+        steps.forEach((_, index) => {
+            timeline
+                .to(circlesRef.current[index], {
+                    boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.9)',
+                    duration: 1,
+                    ease: 'power1.inOut',
+                }, `+=${index === 0 ? 0 : 1}`) // add delay for subsequent animations
+                .to(linesRef.current[index], {
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power1.inOut',
+                }, "<") // start at the same time as the previous tween
+                .to(cardsRef.current[index], {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power1.inOut',
+                    boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.9)',
+                }, "<") // start at the same time as the previous tween
+                .to(hrRef.current, {
+                    scaleX: (index + 1) / steps.length,
+                    duration: 1,
+                    ease: 'power1.inOut',
+                }, "<"); // animate the hr line
         });
     }, []);
 
@@ -71,16 +70,16 @@ const ProcessWork = () => {
                             />
                         ))}
                     </div>
-                    <div className='flex flex-col absolute max-md:top-[2%] left-1 sm:left-[47%] md:left-6 gap-32 sm:gap-[44px] md:gap-[80px] lg:gap-[120px] md:flex-row md:relative items-center max-md:justify-between'>
+                    <div className='flex flex-col absolute max-md:top-[2%] left-0 sm:left-[47%] md:left-6 gap-32 sm:gap-[44px] md:gap-[80px] lg:gap-[120px] md:flex-row md:relative items-center max-md:justify-between'>
                         {[...Array(6)].map((_, index) => (
                             <div key={index} className={`relative animate-shadowMove delay-${index * 300}`}>
                                 <p ref={el => circlesRef.current[index] = el} className='text-white relative text-xl md:text-2xl z-20 font-semibold leading-125 text-center flex items-center justify-center bg-secondary-blue mb-0 rounded-full w-[42px] h-[42px] md:w-[54px] md:h-[54px]'>{index + 1}</p>
-                                <span ref={el => linesRef.current[index] = el} className={`absolute hidden xxs:block rotate-90 md:rotate-0 top-0 ${index % 2 === 0 ? 'md:top-[-100%]' : 'md:top-[100%]'} max-md:${index % 2 === 0 ? '-rotate-90' : 'rotate-90'} left-[120%] md:left-[44%] animate-lineMove ${index === 0 || index === 2 || index === 4 ? 'sm:-rotate-90 sm:left-[-25%] md:!left-[44%]' : ''}`}>
+                                <span ref={el => linesRef.current[index] = el} className={`absolute rotate-90 md:rotate-0 z-10 top-0 width-[6px] height-[35px] xxs:height-[55px] ${index % 2 === 0 ? 'md:top-[-100%]' : 'md:top-[100%]'} max-md:${index % 2 === 0 ? '-rotate-90' : 'rotate-90'} left-[120%] md:left-[44%] animate-lineMove ${index === 0 || index === 2 || index === 4 ? 'sm:-rotate-90 sm:left-[-25%] md:!left-[44%]' : ''}`}>
                                     <BlurLine />
                                 </span>
                             </div>
                         ))}
-                        <hr className='absolute top-[2%] border-t-0 md:[2px] h-[2px] md:top-7 w-[2px] left-[21px] sm:left-[20px] md:left-[25px] md:w-full !bg-[#313543] max-sm:min-h-[870px] max-md:min-h-[461px] max-sm:h-[97%] md:max-w-[700px] lg:max-w-[895px] xl:max-w-[880px] lg:w-full' />
+                        <hr ref={hrRef} className='absolute top-[2%] border-t-0 md:[2px] h-[2px] md:top-7 w-[2px] left-[21px] sm:left-[20px] md:left-[25px] md:w-full !bg-[#313543] max-sm:min-h-[870px] max-md:min-h-[461px] max-sm:h-[97%] md:max-w-[700px] lg:max-w-[895px] xl:max-w-[880px] lg:w-full' />
                     </div>
                     <div className="flex flex-col md:flex-row gap-6 lg:gap-12 items-end md:items-center justify-end">
                         {steps.slice(3).map((step, index) => (
