@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: "Gsap-Task",
     description: "gsap pratice",
-    images: ["/assets/image/png/meta-tag.webp"],
+    images: ["/assets/image/png/meta-tag.png"],
   },
 };
 
