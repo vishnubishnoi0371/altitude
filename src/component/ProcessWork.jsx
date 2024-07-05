@@ -33,24 +33,24 @@ const ProcessWork = () => {
                     boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.9)',
                     duration: 1,
                     ease: 'power1.inOut',
-                }, `+=${index === 0 ? 0 : 1}`) // add delay for subsequent animations
-                .to(linesRef.current[index], {
-                    opacity: 1,
-                    duration: 1,
-                    ease: 'power1.inOut',
-                }, "<") // start at the same time as the previous tween
+                }, `+=${index === 0 ? 0 : 1}`) 
                 .to(cardsRef.current[index], {
                     opacity: 1,
                     y: 0,
                     duration: 1,
                     ease: 'power1.inOut',
                     boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.9)',
-                }, "<") // start at the same time as the previous tween
+                }, "<")
                 .to(hrRef.current, {
                     scaleX: 1,
                     duration: 1,
                     ease: 'power1.inOut',
-                }, "<"); // animate the hr line
+                }, "<") 
+                .to(linesRef.current[index], {
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power1.inOut',
+                }, "<"); 
         });
     }, []);
 
