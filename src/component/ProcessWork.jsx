@@ -47,7 +47,7 @@ const ProcessWork = () => {
                     boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.9)',
                 }, "<") // start at the same time as the previous tween
                 .to(hrRef.current, {
-                    scaleX: (index + 1) / steps.length,
+                    scaleX: 1,
                     duration: 1,
                     ease: 'power1.inOut',
                 }, "<"); // animate the hr line
