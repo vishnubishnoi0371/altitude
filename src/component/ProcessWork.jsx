@@ -55,7 +55,7 @@ const ProcessWork = () => {
         <div className='bg-dark-blue py-10 sm:py-14 md:py-20 overflow-hidden lg:py-[130px]'>
             <h2 className='text-white font-bold text-center !leading-116 text-2xl md:text-4xl lg:text-5xl mb-8 md:mb-14 lg:mb-[64px] animate-fadeIn'>Our Work Process</h2>
             <div className='max-w-[1194px] mx-auto px-3'>
-                <div className='flex flex-col sm:flex-row relative justify-between md:flex-col gap-6 md:!gap-[60px]'>
+                <div className='flex flex-col relative sm:flex-row  justify-between md:flex-col gap-6 md:!gap-[60px]'>
                     <div className="flex flex-col max-sm:max-w-full md:flex-row gap-6 lg:gap-12 items-end md:items-center justify-start">
                         {steps.slice(0, 3).map((step, index) => (
                             <Customcard
