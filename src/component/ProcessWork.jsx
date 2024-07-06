@@ -22,34 +22,34 @@ const ProcessWork = () => {
         gsap.set(circlesRef.current, { boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)' });
         gsap.set(linesRef.current, { opacity: 0 });
         gsap.set(hrRef.current, { scaleX: 0, transformOrigin: 'left center' });
-
+    
         const timeline = gsap.timeline();
-
+    
         steps.forEach((_, index) => {
             timeline
                 .to(circlesRef.current[index], {
                     boxShadow: '0px 0px 20px rgba(255, 255, 255, 0.9)',
-                    duration: 1,
+                    duration: 0.5, 
                     ease: 'power1.inOut',
-                }, `+=${index === 0 ? 0 : 1}`)
-
+                }, `+=${index === 0 ? 0 : 0.5}`) 
+    
                 .to(hrRef.current, {
                     scaleX: 1,
-                    duration: 1,
+                    duration: 0.5, 
                     ease: 'power1.inOut',
                 }, "<")
                 .to(linesRef.current[index], {
                     opacity: 1,
-                    duration: 1,
+                    duration: 0.5, 
                     ease: 'power1.inOut',
                 }, "<");
         });
-
+    
         timeline.eventCallback("onComplete", () => {
-            gsap.to(circlesRef.current, { boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)', duration: 0.5 });
-            gsap.to(cardsRef.current, { boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)', duration: 0.5 });
+            gsap.to(circlesRef.current, { boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)', duration: 0.3 }); 
         });
     }, []);
+    
 
     return (
         <div className='bg-dark-blue py-10 sm:py-14 md:py-20 overflow-hidden lg:py-[130px]'>
